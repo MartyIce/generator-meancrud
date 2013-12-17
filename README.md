@@ -1,4 +1,4 @@
-# generator-meancrud [![Build Status](https://secure.travis-ci.org/MartyIce/generator-meancrud.png?branch=master)](https://travis-ci.org/MartyIce/generator-meancrud)
+# generator-meancrud
 
 A [Yeoman](http://yeoman.io) generator that's really just one subgenerator - "entity".  This will tie a new model type into the [Mean.io stack](https://github.com/linnovate/mean), using the same conventions as the "Articles example" (https://github.com/linnovate/mean/blob/master/app/models/article.js, etc).
 
