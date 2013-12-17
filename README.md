@@ -45,3 +45,8 @@ If you'd like to get to know Yeoman better and meet some of his friends, [Grunt]
 ## License
 
 [MIT License](http://en.wikipedia.org/wiki/MIT_License)
+=======
+generator-meancrud
+==================
+
+A yeoman generator that's really just one subgenerator - "entity"
