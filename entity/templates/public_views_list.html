@@ -1,0 +1,12 @@
+<section data-ng-controller="<%= entityName %>sController" data-ng-init="find()">
+	<ul class="<%= _.slugify(entityName) %>s unstyled">
+		<li data-ng-repeat="<%= _.slugify(entityName) %> in <%= _.slugify(entityName) %>s">
+			<span>{{<%= _.slugify(entityName) %>.created | date:'medium'}}</span> /
+			<span>{{<%= _.slugify(entityName) %>.user.name}}</span>
+			<h2><a data-ng-href="#!/<%= _.slugify(entityName) %>s/{{<%= _.slugify(entityName) %>._id}}">{{<%= _.slugify(entityName) %>.name}}</a></h2>
+			<div>{{<%= _.slugify(entityName) %>.description}}</div>
+		</li>
+	</ul>
+	<a href="/#!/<%= _.slugify(entityName) %>s/create">Create</a>
+	<h1 data-ng-hide="!<%= _.slugify(entityName) %>s || <%= _.slugify(entityName) %>s.length">No <%= _.slugify(entityName) %>s yet. <br> Why don't you <a href="/#!/<%= _.slugify(entityName) %>s/create">Create One</a>?</h1>
+</section>
