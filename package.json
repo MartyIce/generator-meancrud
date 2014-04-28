@@ -1,6 +1,6 @@
 {
   "name": "generator-meancrud",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A Yeoman generator that will create add CRUD functionality for a new model in the Mean.io stack.",
   "keywords": [
     "yeoman-generator"
