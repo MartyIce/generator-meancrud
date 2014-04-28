@@ -1,91 +1,100 @@
+'use strict';
+
 /**
  * Module dependencies.
  */
-
- var mongoose = require('mongoose'),
-    <%= entityName %> = mongoose.model('<%= entityName %>'),
-    _ = require('underscore');
+var mongoose = require('mongoose'),
+    <%=formalEntityName%> = mongoose.model('<%=formalEntityName%>'),
+    _ = require('lodash');
 
 
 /**
- * Find <%= _.slugify(entityName) %> by id
+ * Find <%=entityName%> by id
  */
-exports.<%= _.slugify(entityName) %> = function(req, res, next, id) {
-    <%= entityName %>.load(id, function(err, <%= _.slugify(entityName) %>) {
+exports.<%=entityName%> = function(req, res, next, id) {
+    <%=formalEntityName%>.load(id, function(err, <%=entityName%>) {
         if (err) return next(err);
-        if (!<%= _.slugify(entityName) %>) return next(new Error('Failed to load <%= _.slugify(entityName) %> ' + id));
-        req.<%= _.slugify(entityName) %> = <%= _.slugify(entityName) %>;
+        if (!<%=entityName%>) return next(new Error('Failed to load <%=entityName%> ' + id));
+        req.<%=entityName%> = <%=entityName%>;
         next();
     });
 };
 
 /**
- * Create a <%= _.slugify(entityName) %>
+ * Create an <%=entityName%>
  */
 exports.create = function(req, res) {
-    var <%= _.slugify(entityName) %> = new <%= entityName %>(req.body);
-    <%= _.slugify(entityName) %>.user = req.user;
+    var <%=entityName%> = new <%=formalEntityName%>(req.body);
+                <%=entityName%>.user = req.user;
 
-    <%= _.slugify(entityName) %>.save(function(err) {
+                <%=entityName%>.save(function(err) {
         if (err) {
             return res.send('users/signup', {
                 errors: err.errors,
-                <%= _.slugify(entityName) %>: <%= _.slugify(entityName) %>
+                <%=entityName%>: <%=entityName%>
             });
         } else {
-            res.jsonp(<%= _.slugify(entityName) %>);
+            res.jsonp(<%=entityName%>);
         }
     });
 };
 
 /**
- * Update a <%= _.slugify(entityName) %>
+ * Update an <%=entityName%>
  */
 exports.update = function(req, res) {
-    var <%= _.slugify(entityName) %> = req.<%= _.slugify(entityName) %>;
+    var <%=entityName%> = req.<%=entityName%>;
 
-    <%= _.slugify(entityName) %> = _.extend(<%= _.slugify(entityName) %>, req.body);
+    <%=entityName%> = _.extend(<%=entityName%>, req.body);
 
-    <%= _.slugify(entityName) %>.save(function(err) {
-        res.jsonp(<%= _.slugify(entityName) %>);
-    });
-};
-
-/**
- * Delete an <%= _.slugify(entityName) %>
- */
-exports.destroy = function(req, res) {
-    var <%= _.slugify(entityName) %> = req.<%= _.slugify(entityName) %>;
-
-    <%= _.slugify(entityName) %>.remove(function(err) {
+    <%=entityName%>.save(function(err) {
         if (err) {
-            res.render('error', {
-                status: 500
+            return res.send('users/signup', {
+                errors: err.errors,
+                <%=entityName%>: <%=entityName%>
             });
         } else {
-            res.jsonp(<%= _.slugify(entityName) %>);
+            res.jsonp(<%=entityName%>);
         }
     });
 };
 
 /**
- * Show an <%= _.slugify(entityName) %>
+ * Delete an <%=entityName%>
  */
-exports.show = function(req, res) {
-    res.jsonp(req.<%= _.slugify(entityName) %>);
+exports.destroy = function(req, res) {
+    var <%=entityName%> = req.<%=entityName%>;
+
+    <%=entityName%>.remove(function(err) {
+        if (err) {
+            return res.send('users/signup', {
+                errors: err.errors,
+                <%=entityName%>: <%=entityName%>
+            });
+        } else {
+            res.jsonp(<%=entityName%>);
+        }
+    });
 };
 
 /**
- * List of <%= entityName %>s
+ * Show an <%=entityName%>
+ */
+exports.show = function(req, res) {
+    res.jsonp(req.<%=entityName%>);
+};
+
+/**
+ * List of <%=formalEntityName%>s
  */
 exports.all = function(req, res) {
-    <%= entityName %>.find().sort('-created').populate('user', 'name username').exec(function(err, <%= _.slugify(entityName) %>s) {
+    <%=formalEntityName%>.find().sort('-created').populate('user', 'name username').exec(function(err, <%=entityName%>s) {
         if (err) {
             res.render('error', {
                 status: 500
             });
         } else {
-            res.jsonp(<%= _.slugify(entityName) %>s);
+            res.jsonp(<%=entityName%>s);
         }
     });
 };

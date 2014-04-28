@@ -1,14 +1,14 @@
-<section data-ng-controller="<%= entityName %>sController" data-ng-init="findOne()">
-    <span>{{<%= _.slugify(entityName) %>.created | date:'medium'}}</span>/
-    <span>{{<%= _.slugify(entityName) %>.user.name}}</span>
-    <h2>{{<%= _.slugify(entityName) %>.name}}</h2>
-    <div data-ng-show="global.user._id == <%= _.slugify(entityName) %>.user._id">
-        <a class="btn" href="/#!/<%= _.slugify(entityName) %>s/{{<%= _.slugify(entityName) %>._id}}/edit">
-        	<i class="icon-edit"></i>
+<section data-ng-controller="<%=formalEntityName%>sController" data-ng-init="findOne()">
+    <span>{{<%=entityName%>.created | date:'medium'}}</span> /
+    <span>{{<%=entityName%>.user.name}}</span>
+    <h2>{{<%=entityName%>.name}}</h2>
+    <div data-ng-show="global.user._id == <%=entityName%>.user._id">
+        <a class="btn" href="/#!/<%=entityName%>s/{{<%=entityName%>._id}}/edit">
+            <i class="glyphicon glyphicon-edit"></i>
         </a>
         <a class="btn" data-ng-click="remove();">
-            <i class="icon-trash"></i>
+            <i class="glyphicon glyphicon-trash"></i>
         </a>
     </div>
-    <div>{{<%= _.slugify(entityName) %>.description}}</div>
+    <div>{{<%=entityName%>.description}}</div>
 </section>

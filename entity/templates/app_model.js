@@ -1,15 +1,16 @@
+'use strict';
+
 /**
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    config = require('../../config/config'),
     Schema = mongoose.Schema;
 
 
 /**
- * <%= entityName %> Schema
+ * <%=formalEntityName%> Schema
  */
-var <%= entityName %>Schema = new Schema({
+var <%=formalEntityName%>Schema = new Schema({
     created: {
         type: Date,
         default: Date.now
@@ -33,17 +34,17 @@ var <%= entityName %>Schema = new Schema({
 /**
  * Validations
  */
-<%= entityName %>Schema.path('name').validate(function(name) {
+<%=formalEntityName%>Schema.path('name').validate(function(name) {
     return name.length;
 }, 'Name cannot be blank');
 
 /**
  * Statics
  */
-<%= entityName %>Schema.statics.load = function(id, cb) {
+<%=formalEntityName%>Schema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
     }).populate('user', 'name username').exec(cb);
 };
 
-mongoose.model('<%= entityName %>', <%= entityName %>Schema);
+mongoose.model('<%=formalEntityName%>', <%=formalEntityName%>Schema);
