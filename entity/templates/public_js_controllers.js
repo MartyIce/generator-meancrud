@@ -40,7 +40,7 @@ angular.module('mean.<%= _.slugify(entityName) %>s').controller('<%= formalEntit
         <%= _.slugify(entityName) %>.updated.push(new Date().getTime());
 
         <%= _.slugify(entityName) %>.$update(function() {
-            $location.path('<%= _.slugify(entityName) %>s/' + table._id);
+            $location.path('<%= _.slugify(entityName) %>s/' + slugify(entityName)._id);
         });
     };
 
